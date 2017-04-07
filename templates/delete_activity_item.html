@@ -1,0 +1,16 @@
+{% extends "catalog_base.html" %}
+
+{% block content %}
+<div class="text-center">
+<div class="row">
+    <div class="col-xs-12">
+        <h2> Are you sure you want to delete {{item.name}}?</h2>
+    </div>
+</div>
+<br>
+<form action="{{url_for('DeleteCategoryItem', category_id=category_id, item_id=item_id)}}" method = 'post'>
+    <button type="submit" class="btn btn-danger" id="submit" type="submit">X</button>
+    <a class="btn btn-default" href = '{{url_for('CategoryItems', category_id=category_id )}}' role="button">Cancel</a>
+</form>
+</div>
+{% endblock %}

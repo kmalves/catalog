@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Fun For Everyone - Adventure Catalog</title>
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/main.css">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <header class="row main-header">
+                <div class="col-xs-12">
+                    <a href="{{url_for('MainPage')}}">
+                    <h2 class="text-uppercase grey">fun for</h2>
+                    <h1 class="text-uppercase">every&#128521;ne</h1>
+                    </a>
+                </div>
+            </header>
+            <header class="row green-header">
+                <div class="col-xs-6 text-left">
+                    <h3>Catalog of adventures</h3>
+                </div>
+                <div class="col-xs-6 text-uppercase text-right login-logout">
+                    <br>
+                    {%if 'username' not in session %}
+                        <a href="{{url_for('showLogin')}}">Login</a>
+                    {% else %}
+                        <a href="{{url_for('disconnect')}}">Logout</a>
+                    {% endif %}
+                </div>
+            </header>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

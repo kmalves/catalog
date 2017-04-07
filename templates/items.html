@@ -1,0 +1,67 @@
+{% extends "catalog_base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-12 error">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+</div>
+<div class="row">
+    <h2 class="col-xs-12 text-center text-uppercase category-name">
+        {{ symbols[category.name] | safe }}
+        {{ category.name}}
+    </h2>
+</div>        
+{% if user_name %}
+<div class="row">
+    <div class="col-xs-12 text-center"> 
+        <a class="btn btn-default" href = '{{url_for('NewCategoryItem', category_id = category.id )}}' role="button">Add New Activity</a>
+    </div>
+</div>
+<br>
+{% endif %}
+
+{% for item in items %}
+<div class="border">
+    <div class="row">
+        <div class="col-xs-12 main-title text-center">
+            {{ item.name }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            {{ item.description }}
+        </div>
+    </div>
+    {% if item.website %}
+    <br>
+    <div class="row">
+        <div class="col-xs-12">
+            {{ item.website }}
+        </div>
+    </div>
+    {% endif %}
+    <br>
+    <div class="row">
+        <div class="col-xs-12 user-name">
+            {{ item.user.name }}
+        </div>
+    </div>
+    {% if user_id == item.user_id %}
+    <br>
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="btn btn-success" href = '{{url_for('EditCategoryItem', category_id = category.id, item_id=item.id )}}' role="button">&#x270E;</a>
+            <a class="btn btn-danger" href = '{{url_for('DeleteCategoryItem', category_id = category.id, item_id=item.id )}}' role="button">X</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

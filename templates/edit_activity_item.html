@@ -1,0 +1,21 @@
+{% extends "catalog_base.html" %}
+
+{% block content %}
+<form class="text-center narrow" action="{{url_for('EditCategoryItem', category_id=category_id, item_id=item_id)}}" method = "post">
+    <div class="form-group">
+        <label class="main-title" for="name">Name:</label>
+            <input type ="text" maxlength="80" class="form-control" name="name" value="{{ item.name }}" required>
+    </div>
+    <div class="form-group">
+        <label class="main-title" for="description">Description:</label>
+            <textarea class="form-control" maxlength="500" rows="3" name="description" required>{{ item.description }}</textarea>
+    </div>
+    <div class="form-group">
+        <label class="main-title" for="price">Website:</label>
+            <input type ="text" class="form-control" maxlength="80" name="website" value="{{ item.website }}">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-success" id="submit" type="submit">Save</button>
+    <a class="btn btn-default" href = '{{url_for('CategoryItems', category_id=category_id )}}' role="button">Cancel</a>
+</form>
+{% endblock %}
